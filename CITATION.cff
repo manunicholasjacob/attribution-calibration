@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "attribution-calibration: error rates for directed attribution claims about multi-agent logs"
+message: "If you use this work, please cite it as below."
+type: software
+authors:
+  - family-names: Jacob
+    given-names: Manu Nicholas
+    email: manunicholasjacob@gmail.com
+    affiliation: Independent Researcher
+abstract: >-
+  A detector-agnostic harness that attaches an error rate to a directed attribution or influence
+  claim about a multi-agent log. The user supplies their own detector and their own event log and
+  gets back a family-wise error rate measured on surrogates built from that same log, a power curve
+  from a spike-in positive control, and a detection floor reported with an explicit status. Every
+  rate carries a Wilson interval. Four surrogates are provided, including the conventional
+  circular-shift recipe, which is implemented faithfully in order to be measured against: it does
+  not hold the actor sequence fixed, and on turn-ordered agent chat it was found to certify at least
+  one influence edge on 90 per cent of structure-free replicates against a nominal 5 per cent.
+keywords:
+  - attribution
+  - influence detection
+  - multi-agent systems
+  - surrogate data
+  - family-wise error
+  - statistical power
+  - AI safety
+  - calibration
+license: MIT
+version: 0.1.0
+date-released: "2026-11-06"
+repository-code: "https://github.com/manunicholasjacob/attribution-calibration"
+url: "https://github.com/manunicholasjacob/attribution-calibration"

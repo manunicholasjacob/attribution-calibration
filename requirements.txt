@@ -1,0 +1,11 @@
+# Runtime. numpy is the only hard dependency and it is used for the permutations, the bincount
+# statistics and the seeded generators.
+numpy>=1.24
+
+# Tests only.
+pytest>=7.4
+
+# NOT required, deliberately. The adjusted Rand index in attrcal/symbols.py is implemented in about
+# a dozen lines of numpy rather than imported from scikit-learn. A calibration harness whose whole
+# argument is that other people's error rates are unverified should be installable and auditable
+# from one short file, and a single metric is not worth a dependency with its own build chain.

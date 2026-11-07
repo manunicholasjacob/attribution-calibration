@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "attribution-calibration"
+version = "0.1.0"
+description = "Error rates for directed attribution and influence claims about multi-agent logs: family-wise error, power and a detection floor, measured with surrogates built from the user's own log."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Manu Nicholas Jacob", email = "manunicholasjacob@gmail.com" },
+]
+maintainers = [
+    { name = "Manu Nicholas Jacob", email = "manunicholasjacob@gmail.com" },
+]
+keywords = [
+    "attribution",
+    "influence detection",
+    "multi-agent systems",
+    "surrogate data",
+    "family-wise error",
+    "statistical power",
+    "AI safety",
+    "calibration",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.4"]
+
+[project.urls]
+Homepage = "https://github.com/manunicholasjacob/attribution-calibration"
+Repository = "https://github.com/manunicholasjacob/attribution-calibration"
+Issues = "https://github.com/manunicholasjacob/attribution-calibration/issues"
+
+[tool.setuptools]
+packages = ["attrcal"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    # The harness warns on purpose when a caller picks the invalid surrogate or runs too few
+    # replicates to estimate what they are asking for. Those warnings are part of the behaviour and
+    # are asserted in the tests, so they must not be turned into errors here.
+    "default",
+]
