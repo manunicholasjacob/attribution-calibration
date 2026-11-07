@@ -1,3 +1,8 @@
+# NOTE FOR ANYONE ADDING ZENODO METADATA LATER.
+# Zenodo reads this file when archiving a GitHub release, BUT if a .zenodo.json is also present it
+# uses that and ignores this file silently. Do not add a .zenodo.json alongside this one unless you
+# intend it to be the single source of truth, or a minted DOI will carry whichever metadata is
+# stale. This repository deliberately keeps CITATION.cff only.
 cff-version: 1.2.0
 title: "attribution-calibration: error rates for directed attribution claims about multi-agent logs"
 message: "If you use this work, please cite it as below."
@@ -30,3 +35,33 @@ version: 0.1.0
 date-released: "2026-11-06"
 repository-code: "https://github.com/manunicholasjacob/attribution-calibration"
 url: "https://github.com/manunicholasjacob/attribution-calibration"
+references:
+  # The local permutation scheme this package's `permute` and `blockpermute` nulls implement.
+  # Runge proposed it; Shorten, Spinney and Lizier adapted it to continuous-time event data and
+  # showed that the conventional source-time-shift surrogate fails for event-based processes.
+  # Cite both, in this order. See the Prior work section of the README.
+  - type: conference-paper
+    title: "Conditional Independence Testing Based on a Nearest-Neighbor Estimator of Conditional Mutual Information"
+    authors:
+      - family-names: Runge
+        given-names: Jakob
+    collection-title: "Proceedings of the Twenty-First International Conference on Artificial Intelligence and Statistics"
+    volume: 84
+    start: 938
+    end: 947
+    year: 2018
+    url: "https://proceedings.mlr.press/v84/runge18a.html"
+  - type: article
+    title: "Estimating transfer entropy in continuous time between neural spike trains or other event-based data"
+    authors:
+      - family-names: Shorten
+        given-names: David P.
+      - family-names: Spinney
+        given-names: Richard E.
+      - family-names: Lizier
+        given-names: Joseph T.
+    journal: "PLOS Computational Biology"
+    volume: 17
+    issue: 4
+    year: 2021
+    doi: "10.1371/journal.pcbi.1008054"

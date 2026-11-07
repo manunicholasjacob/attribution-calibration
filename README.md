@@ -21,13 +21,46 @@ That failure is not specific to transfer entropy, or to influence, or to that on
 method that reads a multi-agent log and emits directed edges can be audited the same way, and almost
 none are. This package is that audit, made generic and detector-agnostic.
 
+The 0.90 figure, and the measurements behind it, are in
+**[swarm-influence-audit](https://github.com/manunicholasjacob/swarm-influence-audit)**, with a
+verifier that recomputes every number in that report from the committed analysis output. The
+generated benchmark it was validated against is
+**[swarm-influence-bench](https://github.com/manunicholasjacob/swarm-influence-bench)**.
+
+## Prior work, and what is and is not original here
+
+**The idea of holding the actor sequence fixed and permuting only the payloads is not mine.** It is
+the local permutation scheme of:
+
+> Runge, J. (2018). Conditional Independence Testing Based on a Nearest-Neighbor Estimator of
+> Conditional Mutual Information. *AISTATS*, PMLR 84, 938-947.
+
+adapted to continuous-time event data by:
+
+> Shorten, D. P., Spinney, R. E., and Lizier, J. T. (2021). Estimating transfer entropy in
+> continuous time between neural spike trains or other event-based data. *PLOS Computational
+> Biology* 17(4), e1008054. doi:10.1371/journal.pcbi.1008054
+
+Runge proposed it; Shorten and colleagues established that the conventional source-time-shift
+surrogate fails to represent the null of conditional independence for event-based processes, and
+adapted Runge's scheme to that setting. `permute` and `blockpermute` below are that idea applied to
+turn-ordered multi-agent logs. The `JIDT` toolkit has implemented the spiking estimator and its
+permutation surrogate since 2022, contributed by Shorten himself.
+
+What this package adds is narrower and worth stating plainly: packaging the comparison as a
+detector-agnostic harness, the four-way surrogate contrast that lets an invalid null be *measured*
+rather than asserted, the explicit floor status, and `audit_null()`, which demonstrates on your own
+log why `shift` fails instead of asking you to take it on faith.
+
 ## Install
 
 ```bash
-pip install -e .
+pip install -e ".[test]"
 python -m pytest tests -q
 python demo.py
 ```
+
+`pytest` is an optional extra, so `pip install -e .` alone will not let the test line above run.
 
 Python 3.10 or newer. `numpy` is the only dependency. scikit-learn is deliberately **not** used:
 the one metric that would have needed it, the adjusted Rand index, is a dozen lines of numpy in
@@ -282,6 +315,10 @@ nothing else, which `tests/test_packaging.py` asserts by walking each file's syn
 no absolute paths, no import-path manipulation and no non-ASCII characters anywhere, each also
 asserted mechanically, so a clean clone runs on Linux unchanged.
 
+**Code independence is not intellectual independence**, and the two were easy to confuse here. The
+statistical idea the package is built on belongs to Runge (2018) and to Shorten, Spinney and Lizier
+(2021), as set out under Prior work above.
+
 ## Tests
 
 ```bash
@@ -299,7 +336,8 @@ seed reproduces a report exactly.
 
 Version 0.1.0, dated 2026-11-06 (see [CITATION.cff](CITATION.cff)). This is general-purpose
 infrastructure: it is detector-agnostic and log-agnostic, and it was written to be reused rather
-than for one study. It shares no code with any other project of the author's or anyone else's.
+than for one study. It shares no code with any other project of the author's or anyone else's, and
+the statistical method it implements is credited under Prior work above.
 
 ## Licence
 
