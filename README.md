@@ -1,5 +1,7 @@
 # attribution-calibration
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24064146.svg)](https://doi.org/10.5281/zenodo.24064146)
+
 **Error rates for directed claims about multi-agent logs.** Bring your own detector and your own
 event log; get back the three numbers any claim of the form "agent A caused / influenced / is
 responsible for B" should carry, and never does.

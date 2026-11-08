@@ -31,8 +31,9 @@ keywords:
   - AI safety
   - calibration
 license: MIT
+doi: "10.5281/zenodo.24064146"
 version: 0.1.0
-date-released: "2026-11-08"
+date-released: "2026-11-09"
 repository-code: "https://github.com/manunicholasjacob/attribution-calibration"
 url: "https://github.com/manunicholasjacob/attribution-calibration"
 references:
